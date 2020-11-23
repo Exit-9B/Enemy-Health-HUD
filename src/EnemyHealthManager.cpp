@@ -11,7 +11,13 @@ void EnemyHealthManager::InstallHooks()
 
 float EnemyHealthManager::GetEnemyHealthPercent(RE::Character* a_enemy, RE::ActorValue a_actorValue)
 {
-	_GetEnemyHealthPercent(a_enemy, a_actorValue);
+	auto healthPercent = _GetEnemyHealthPercent(a_enemy, a_actorValue);
+
+	if (a_actorValue != RE::ActorValue::kHealth)
+	{
+		logger::critical("Expected health query but got AV {} instead", a_actorValue);
+		return healthPercent;
+	}
 
 	auto baseHealth = a_enemy->GetPermanentActorValue(RE::ActorValue::kHealth);
 	auto healthMod = a_enemy->healthModifiers.modifiers[RE::ACTOR_VALUE_MODIFIERS::kTemporary];
