@@ -6,12 +6,12 @@ void EnemyHealthManager::InstallHooks()
 	static REL::Relocation<std::uintptr_t> hook{ Offset::EnemyHealth_Update, 0xE1 };
 
 	auto& trampoline = SKSE::GetTrampoline();
-	_GetEnemyHealthPercent = trampoline.write_call<5>(hook.address(), GetEnemyHealthPercent);
+	_GetActorValuePercent = trampoline.write_call<5>(hook.address(), GetEnemyHealthPercent);
 }
 
 float EnemyHealthManager::GetEnemyHealthPercent(RE::Character* a_enemy, RE::ActorValue a_actorValue)
 {
-	auto healthPercent = _GetEnemyHealthPercent(a_enemy, a_actorValue);
+	auto healthPercent = _GetActorValuePercent(a_enemy, a_actorValue);
 
 	if (a_actorValue != RE::ActorValue::kHealth)
 	{

@@ -10,5 +10,5 @@ private:
 
 	static float GetEnemyHealthPercent(RE::Character* a_enemy, RE::ActorValue a_actorValue);
 
-	inline static REL::Relocation<decltype(GetEnemyHealthPercent)> _GetEnemyHealthPercent;
+	inline static REL::Relocation<decltype(GetEnemyHealthPercent)> _GetActorValuePercent;
 };
