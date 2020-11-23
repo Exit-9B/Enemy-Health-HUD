@@ -8,5 +8,7 @@ public:
 private:
 	EnemyHealthManager() = default;
 
-	static float GetEnemyHealthPercent(RE::Character* a_enemy);
+	static float GetEnemyHealthPercent(RE::Character* a_enemy, RE::ActorValue a_actorValue);
+
+	inline static REL::Relocation<decltype(GetEnemyHealthPercent)> _GetEnemyHealthPercent;
 };
